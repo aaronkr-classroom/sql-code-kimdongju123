@@ -172,12 +172,12 @@ GROUP BY ( ㄷ )
 
   
 
-1. SELECT 이름 FROM 학생 WHERE 나이 IS NULL;
-2. SELECT DISTINCT 나이 FROM 학생 WHERE 이름 LIKE '김%' AND 학년 = 3;
-3. SELECT 성별, AVG(나이) FROM 학생 GROUP BY 성별;
-4. SELECT 학번, 나이, 학년 FROM 학생 ORDER BY 나이 DESC, 학년 ASC;
-5. SELECT 학번, 이름, 나이 FROM 학생 WHERE 성별 = 'M' ORDER BY 나이 ASC LIMIT 1;
-6. SELECT 나이, COUNT(*) FROM 학생 GROUP BY 나이 HAVING COUNT(*) >= 50;
+1 SELECT 이름 FROM 학생 WHERE 나이 IS NULL;
+2 SELECT DISTINCT 나이 FROM 학생 WHERE 이름 LIKE '김%' AND 학년 = 3;
+3 SELECT 성별, AVG(나이) FROM 학생 GROUP BY 성별;
+4 SELECT 학번, 나이, 학년 FROM 학생 ORDER BY 나이 DESC, 학년 ASC;
+5 SELECT 학번, 이름, 나이 FROM 학생 WHERE 성별 = 'M' ORDER BY 나이 ASC LIMIT 1;
+6 SELECT 나이, COUNT(*) FROM 학생 GROUP BY 나이 HAVING COUNT(*) >= 50;
 
 **17 다음 데이터베이스를 대상으로 질의 요구 사항을 SOL로 표현하시오.**
 
@@ -187,21 +187,21 @@ GROUP BY ( ㄷ )
 과목(과목번호, 과목이름 학점, 학과 , 담당교수)
 ```
 
-1. 컴퓨터학과에 소속되어 있는 학생들의 이름과 학년을 고학년에서 저학년 순서로 검색하시오.
-2. 각 학생들의 학반 과목번호, 수강과목별 총점(중간성적과 기말성적의 합)을 검색하시오.
-3. 각 학생들의 이름, 수강한 모든 과목의 총점(중간성적과 기말성적의 합)을 검색하시오.
-4. 각 과목별 기말평균이 90점 이상인 과목의 번호와 과목별 기말성적의 평균점수를 검색하시오.
-5. 각 평가학점별로 취득한 학생의 수를 검색하시오.
-6. ‘이씨 성을 가진 모든 학생들의 이름과 과목이름 평가학점을 검색하시오.
-7. 컴퓨터학과에 소속된 학생들의 이름과 수강한 과목이름을 검색하시오.
+1 컴퓨터학과에 소속되어 있는 학생들의 이름과 학년을 고학년에서 저학년 순서로 검색하시오.
+2 각 학생들의 학반 과목번호, 수강과목별 총점(중간성적과 기말성적의 합)을 검색하시오.
+3 각 학생들의 이름, 수강한 모든 과목의 총점(중간성적과 기말성적의 합)을 검색하시오.
+4 각 과목별 기말평균이 90점 이상인 과목의 번호와 과목별 기말성적의 평균점수를 검색하시오.
+5 각 평가학점별로 취득한 학생의 수를 검색하시오.
+6 ‘이씨 성을 가진 모든 학생들의 이름과 과목이름 평가학점을 검색하시오.
+7 컴퓨터학과에 소속된 학생들의 이름과 수강한 과목이름을 검색하시오.
 
 
-1. SELECT 이름, 학년 FROM 학생 WHERE 소속학과 = '컴퓨터학과' ORDER BY 학년 DESC;
-2. SELECT 학번, 과목번호, (중간성적 + 기말성적) AS 총점 FROM 수강;
-3. SELECT 학생.이름, SUM(중간성적 + 기말성적) AS 총점 FROM 학생 JOIN 수강 ON 학생.학번 = 수강.학번 GROUP BY 학생.이름;
-4. SELECT 과목번호, AVG(기말성적) AS 평균 FROM 수강 GROUP BY 과목번호 HAVING AVG(기말성적) >= 90;
-5. SELECT 평가학점, COUNT(*) FROM 수강 GROUP BY 평가학점;
-6. SELECT 학생.이름, 과목.과목이름, 수강.평가학점 FROM 학생 JOIN 수강 ON 학생.학번 = 수강.학번 JOIN 과목 ON 수강.과목번호 = 과목.과목번호 WHERE 학생.이름 LIKE '이%';
-7. SELECT 학생.이름, 과목.과목이름 FROM 학생 JOIN 수강 ON 학생.학번 = 수강.학번 JOIN 과목 ON 수강.과목번호 = 과목.과목번호 WHERE 학생.소속학과 = '컴퓨터학과';
+1 SELECT 이름, 학년 FROM 학생 WHERE 소속학과 = '컴퓨터학과' ORDER BY 학년 DESC;
+2 SELECT 학번, 과목번호, (중간성적 + 기말성적) AS 총점 FROM 수강;
+3 SELECT 학생.이름, SUM(중간성적 + 기말성적) AS 총점 FROM 학생 JOIN 수강 ON 학생.학번 = 수강.학번 GROUP BY 학생.이름;
+4 SELECT 과목번호, AVG(기말성적) AS 평균 FROM 수강 GROUP BY 과목번호 HAVING AVG(기말성적) >= 90;
+5 SELECT 평가학점, COUNT(*) FROM 수강 GROUP BY 평가학점;
+6 SELECT 학생.이름, 과목.과목이름, 수강.평가학점 FROM 학생 JOIN 수강 ON 학생.학번 = 수강.학번 JOIN 과목 ON 수강.과목번호 = 과목.과목번호 WHERE 학생.이름 LIKE '이%';
+7 SELECT 학생.이름, 과목.과목이름 FROM 학생 JOIN 수강 ON 학생.학번 = 수강.학번 JOIN 과목 ON 수강.과목번호 = 과목.과목번호 WHERE 학생.소속학과 = '컴퓨터학과';
 
 
