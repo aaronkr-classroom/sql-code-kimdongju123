@@ -1,11 +1,3 @@
-slow DATABASE;
-
--- 데이터베이스 생성
-DROP DATABASE IF EXISTS univDB;
-CREATE DATABASE IF NOT EXISTS univDB;
-
--- SQL 명렁어를 실행할 대상인 기본 데이터베이스를 univDB로 지정 
-USE univDB;
 -- 학생 테이블생성
 CREATE TABLE 학생
 ( 학번 CHAR(4) NOT NULL,
@@ -13,14 +5,14 @@ CREATE TABLE 학생
 주소 VARCHAR(50) NULL DEFAULT '미정',
 학년 INT NOT NULL,
 나이 INT NULL,
-성별 CHAR(l) NOT NULL,
+성별 CHAR(1) NOT NULL,
 휴대폰번호 CHAR(14) NULL,
 소속학과 VARCHAR(20) NULL,
 PRIMARY KEY (학번) );
 
 -- 과목 테이블 생성
 CREATE TABLE 과목
-( 과목번호 char(4) NOT NULL PRIMARY KEY,
+( 과목번호 CHAR(4) NOT NULL PRIMARY KEY,
 이름 VARCHAR(20) NOT NULL,
 강의실 CHAR(3) NOT NULL,
 개설학과 VARCHAR(20) NOT NULL,
@@ -28,141 +20,155 @@ CREATE TABLE 과목
 
 -- 수강 테이블 생성
 CREATE TABLE 수강
-( 학번 char(6) NOT NULL,
+( 학번 CHAR(6) NOT NULL,
 과목번호 CHAR(4) NOT NULL,
 신청날짜 DATE NOT NULL,
 중간성적 INT NULL DEFAULT 0,
 기말성적 INT NULL DEFAULT 0,
-평가학점 CHAR(l) NULL,
+평가학점 CHAR(1) NULL,
 PRIMARY KEY( 학번, 과목번호) );
 
-- 학생 테이블입력
+-- 학생 테이블입력
 INSERT INTO 학생
-VALUES ( 
-(‘s001’, ‘김연아’, ‘서울 서초’, 4, 23, ‘여’, ‘010-1111-2222’, ‘컴퓨터’),
-(‘s002’, ‘홍길동’, DEFAULT, 1, 26, ‘남’, NULL, ‘통계’),
-(‘s003’, ‘이승엽’, NULL, 3, 30, ‘남’, NULL, ‘정보통신’),
-(‘s004’, ‘이영애’, ‘경기 분당’, 2, NULL, ‘여’, ‘010-4444-5555’, ‘정보통신’),
-(‘s005’, ‘송윤아’, ‘경기 분당’, 4, 23, ‘여’, ‘010-6666-7777’, ‘컴퓨터’),
-(‘s006’, ‘홍길동’, ‘서울 종로’, 2, 26, ‘남’, ‘010-8888-9999’, ‘컴퓨터’),
-(‘s007’, ‘이온진’, ‘경기 과천’, 1, 23, ‘여’, ‘010 오222-3333’, ‘경영’) 
+VALUES 
+	('s001', '김연아', '서울 서초', 4, 23, '여', '010-1111-2222', '컴퓨터'),
+	('s002', '홍길동', DEFAULT, 1, 26, '남', NULL, '통계'),
+	('s003', '이승엽', NULL, 3, 30, '남', NULL, '정보통신'),
+	('s004', '이영애', '경기 분당', 2, NULL, '여', '010-4444-5555', '정보통신'),
+	('s005', '송윤아', '경기 분당', 4, 23, '여', '010-6666-7777', '컴퓨터'),
+	('s006', '홍길동', '서울 종로', 2, 26, '남', '010-8888-9999', '컴퓨터'),
+	('s007', '이온진', '경기 과천', 1, 23, '여', '010-2222-3333', '경영');
+
+-- 학생 테이블입력
+INSERT INTO 학생 VALUES ('s001', '김연아', '서울 서초', 4, 23, '여', '010-1111-2222', '컴퓨터' );
+INSERT INTO 학생 VALUES ('s002', '홍길동', DEFAULT, 1, 26, '남', NULL, '통계' );
+INSERT INTO 학생 VALUES ('s003', '이승엽', NULL, 3, 30, '남', NULL, '정보통신' );
+INSERT INTO 학생 VALUES ('s004', '이영애', '경기 분당', 2, NULL, '여', '010-4444-5555', '정보통신' );
+INSERT INTO 학생 VALUES ('s005', '송윤아', '경기 분당', 4, 23, '여', '010-6666-7777', '컴퓨터' );
+INSERT INTO 학생 VALUES ('s006', '홍길동', '서울 종로', 2, 26, '남', '010-8888-9999', '컴퓨터' );
+INSERT INTO 학생 VALUES ('s007', '이온진', '경기 과천', 1, 23, '여', '010-2222-3333', '경영' );
 
 -- 괴목 테이블 입력
 INSERT INTO 과목
-VALUES (
-(‘c001’, ‘데이터베이스’, ‘126’, ‘컴퓨터’, 3),
-(‘c002’, ‘정보보호’, ‘137’, ‘정보통신’, 3),
-(‘c003’, ‘모바일웹’, ‘128’, ‘컴퓨터’, 3),
-(‘c004’, ‘철학개론’, ‘117’, ‘철학’, 2),
-(‘c005’, ‘전공글쓰기’, ‘120’, ‘교양학부’, 1)
-);
+VALUES
+('c001', '데이터베이스', '126', '컴퓨터', 3),
+('c002', '정보보호', '137', '정보통신', 3),
+('c003', '모바일웹', '128', '컴퓨터', 3),
+('c004', '철학개론', '117', '철학', 2),
+('c005', '전공글쓰기', '120', '교양학부', 1);
 
 -- 수강 테이블 입력
 INSERT INTO 수강
-VALUES ( 
-(‘s001’, ‘c002’, ‘2019-09-03’, 93, 98, ‘A’),
-(‘s004’, ‘c005’, ‘2019-03-03’, 72, 78, ‘C’),
-(‘s003’, ‘c002’, ‘2017-09-06’, 85, 82, ‘B’),
-(‘s002’, ‘c001’, ‘2018-03-10’, 31, 50, ‘F’),
-(‘s001’, ‘c004’, ‘2019-03-05’, 82, 89, ‘B’),
-(‘s004’, ‘c003’, ‘2020-09-03’, 91, 94, ‘A’),
-(‘s001’, ‘c005’, ‘2020-09-03’, 74, 79, ‘C’),
-(‘s003’, ‘c001’, ‘2019-03-03’, 81, 82, ‘B’),
-(‘s004’, ‘c002’, ‘2018-03-05’, 92, 95, ‘A’)
-);
+VALUES 
+('s001', 'c002', '2019-09-03', 93, 98, 'A'),
+('s004', 'c005', '2019-03-03', 72, 78, 'C'),
+('s003', 'c002', '2017-09-06', 85, 82, 'B'),
+('s002', 'c001', '2018-03-10', 31, 50, 'F'),
+('s001', 'c004', '2019-03-05', 82, 89, 'B'),
+('s004', 'c003', '2020-09-03', 91, 94, 'A'),
+('s001', 'c005', '2020-09-03', 74, 79, 'C'),
+('s003', 'c001', '2019-03-03', 81, 82, 'B'),
+('s004', 'c002', '2018-03-05', 92, 95, 'A');
 
---테이블 확인하기
-TABLE 학생; --SELECT = FROM 학생;
-TABLE 과목;
-TABLE 수강;
+--새로운 사본 테이블 만들어요
+CREATE TABLE 과목2
+	(과목번호 CHAR(5) NOT NULL PRIMARY KEY,
+	이름 VARCHAR(20) NOT NULL,
+	강의실 CHAR(5) NOT NULL,
+	개설학과 VARCHAR(20) NOT NULL,
+	사수 INT NOT NULL);
+	
+DESC 과목2; --MYSQL
 
---SELECT문
-SELECT 이름, 주소 FROM 학생;
+CREATE TABLE 학생2
+	(학번 CHAR(4) NOT NULL,
+	이름 VARCHAR(20) NOT NULL,
+	주소 VARCHAR(50) NOT NULL,
+	학년 INT NOT NULL,
+	나이 INT NULL,
+	성별 CHAR(1) NOT NULL,
+	휴대폰번호 CHAR(13) NULL,
+	소속학과 VARCHAR(20) NULL,
+	PRIMARY KEY (학번),
+	UNIQUE (휴대폰번호));
 
-SELECT DISTINCT 소속학과 FROM 학생;
+CREATE TABLE 수강2
+	(학번 CHAR(6) NOT NULL,
+	과목번호 CHAR(4) NOT NULL,
+	신청날짜 DATE NOT NULL,
+	중간성적 INT NULL DEFAULT 0,
+	기말성적 INT NULL DEFAULT 0,
+	평가학점 CHAR(1) NULL, --A, B, C, D, F, P
+	PRIMARY KEY (학번, 과목번호),
+	FOREIGN KEY (학번) REFERENCES 학생2(학번),
+	FOREIGN KEY (과목번호) REFERENCES 과목2(과목번호)) ;
+	
+ -- 데이타를 입력 / 가져오기
+ INSERT INTO 과목2 SELECT * FROM 과목;
+ INSERT INTO 학생2 SELECT * FROM 학생;
+ INSERT INTO 수강2 SELECT * FROM 수강;
 
-SELECT 이름, 학년, 소속학과, 휴대폰번호 FROM 학생
-WHERE 학년 >= 2 AND 소속학과 = '컴퓨터';
+ -- 학생2 테이블에서 학번 's003' 추가합니다
+INSERT INTO 학생2
+VALUES ('s003', '이순신', DEFAULT, 4, 54, '남', NULL, NULL);
 
-SELECT 이름, 학년, 소속학과, 휴대폰번호 FROM 학생
-WHERE (학년 BETWEEN 1 AND 3)OR NOT (소속학과 = '컴퓨터');
+TABLE 수강2;
+TABLE 학생2;
+TABLE 과목2;
 
-SELECT 이름, 학년, 소속학과, 휴대폰번호 FROM 학생
-WHERE 소속학과 = '컴퓨터' OR 소속학과 = '정보통신';
-ORDER BY 학년 DESC;
+ -- ALTER TABLE문 (테이블 수정/변경)
+ALTER TABLE 학생2
+	ADD COLUMN 등록날짜 DATE NOT NULL DEFAULT '2024-10-15';
 
-SELECT = FROM 학생
-ORDER BY 학년 ASC, 이름 DESC;
-LIMIT 3; -- MYSQL에서 3,5 가능
+ALTER TABLE 학생2
+	DROP COLUMN 등록날짜;
 
---집계 함수
-SELECT COUNT(*) FROM 학생;
-SELECT COUNT(주소) FROM 학생;
+ -- 학생2 테이블의 사본 만들어요
+CREATE TABLE 학생3;
+	AS SELECT * FROM 학생2;
+	
+TABLE 학생3;
 
-SELECT AVG(나이) AS '남학생 평균나이' FROM 학생
-WHERE 성별 = '남';
+DROP TABLE 학생3;
 
+ -- 새로운 manager 계정 만든다
+SELECT current_user; --postgres (기본 사용자)
 
---데이터 검색하기 
-SELECT 학번, 이름 FROM 학생
-WHERE 이름 LIKE '이%';
+CREATE USER manager WITH PASSWORD '1234';
+GRANT ALL PRIVILEGES ON DATABASE univdb TO manager;
 
-SELECT 이름, 휴대폰번호 FROM 학생
-WHERE 휴대폰번호 LIKE '%22%';
+ALTER DATABASE univdb QWNER TO manager;
 
-SELECT 이름, 주소 FROM 학생
-WHERE 주소 IS NULL;
+ -- 위 드랍다운 화살표 누르고 New Conection--
+ -- univ와 manager 선택 저장 --
+SELECT current_user; -- manager (새로운 사용자!!!)
 
-SELECT 학번, FROM 학생 WHERE 성별 = '여'
-UNION
-SELECT 학번 FROM 수강 WHERE 평가학점 = 'A';
+ -- 뷰
+DROP VIEW IF EXISTS V1
 
-SELECT 이름 FROM 학생
-WHERE 이름 IN ('홍길동', '홍길순');
+ -- postgress 계정으로 변경 --
+ CREATE VIEW V1_고학년학생 (학생이름, 나이, 성, 학년) AS
+ SELECT 이름, 나이, 성별, 학년 FROM 학생2
+ WHERE 학년 >= 3 AND 학년 >= 4;
 
---JOIN
-SELECT = FROM 학생, 수강;
-SELECT = FROM 학생 CROSS JOIN 수강;
+SELECT * FROM V1_고학년학생;
 
---상대평가 계산하기
-SELECT 학생.학번, 이름, 과목번호, 중간성적, 중간성적+(중간성적*0.1) AS 변환중간성적
-FROM 학생 JOIN 수강 ON 학생,학번 = 수강,학번
-WHERE 과목번호 = 'C002';
+CREATE VIEW V2_과목수강현황(과목번호, 강의실, 수강인원수) AS
+	SELECT 과목.과목번호, 강의실, COUNT(과목.과목번호)
+	FROM 과목 JOIN 수강 ON 과목.과목번호 = 수강.과목번호
+	GROUP BY 과목.과목번호;
 
---테이블 3개의 조인
-SELECT 학생.학번,학생,이름, 수강,과목번호
-FROM (학생 JOIN 수강 ON 학생,학번 = 수강, 학번) JOIN 과목 ON 수강,과목번호 = 과목, 과목번호
-WHERE 과목, 이름 = '정보보호'; --C002
+SELECT * FROM V2_과목수강현황;
 
---OUTER JOIN
-SELECT 학생.학번, 이름, 평가학점
-FROM 학생 LEFT OUTER JOIN 수강 ON 학생.학번 = 수강.학번;
-ORDER BY 학생.학번;
+CREATE VIEW V3_고학년여학생 AS
+	SELECT * FROM V1_고학년학생
+	WHERE 성 = '여';
 
-SELECT H 학번 AS B. 이름, 평가학점
-FROM 학생 AS H RIGHT OUTER JOIN 수강 AS S ON H 학번 - S.학번;
-ORDER BY B;
+ -- 인덱스
+ CREATE INDEX idx_수강 ON 수강(학번, 과목번호); -- 소유자만 가능 있다면, postgres 계정에서 실행
 
-SELECT H 학번 AS B. 이름, 평가학점
-FROM 학생 AS H FULL OUTER JOIN 수강 AS S ON H 학번 - S.학번;
-ORDER BY B;
+ CREATE UNIQUE INDEX idx_과목 ON 과목(이름 ASC);
 
---INSERT
+ CREATE UNIQUE INDEX idx_학생 ON 학생(학번);
 
-TABLE 학생;
---UPDATE
-UPDATE 학생
-SET 주소='대전대학교'
-WHERE 학번='S002';
-
-TABLE 학생;
-
-UPDATE 학생
-SET 학년 = 학년 + 1, 소속학과 = '자유전공학부'
-WHERE 학년 = 4;
-
---DELETE
-DELETE FROM 학생
-WHERE 이름 = '이승엽';
-
-
+ -- SHOW INDEX FROM 학생; -- MYSQL만
